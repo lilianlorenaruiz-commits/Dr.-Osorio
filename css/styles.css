@@ -636,13 +636,13 @@ ul { list-style: none; }
 .process__steps {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr;
-  align-items: start;
+  align-items: stretch;
   gap: 16px;
   max-width: 900px;
   margin: 0 auto;
 }
 .process__arrow {
-  padding-top: 28px;
+  align-self: center;
   color: var(--teal);
   opacity: 0.4;
 }
@@ -656,6 +656,8 @@ ul { list-style: none; }
   box-shadow: 0 2px 10px rgba(27, 42, 74, 0.04);
   margin-top: 24px;
   transition: box-shadow 0.22s ease, transform 0.22s ease;
+  display: flex;
+  flex-direction: column;
 }
 .process__step:hover {
   transform: translateY(-3px);
