@@ -371,18 +371,38 @@ ul { list-style: none; }
 .path-card {
   background: var(--white);
   border-radius: var(--radius-lg);
-  padding: 36px;
+  padding: 36px 36px 36px 40px;
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 2px 10px rgba(27, 42, 74, 0.04);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.path-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px rgba(27, 42, 74, 0.10);
+}
+.path-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
 }
 .path-card__cta {
   margin-top: auto;
 }
-.path-card--individuals { border-top: 4px solid var(--teal); }
-.path-card--attorneys   { border-top: 4px solid var(--pink-accent); }
+.path-card--individuals {
+  background: linear-gradient(180deg, #F0FAFB 0%, #FFFFFF 55%);
+}
+.path-card--individuals::before { background: var(--teal); }
+.path-card--attorneys {
+  background: linear-gradient(180deg, #F5F0F5 0%, #FFFFFF 55%);
+}
+.path-card--attorneys::before { background: var(--pink-accent); }
 
 .path-card__icon {
   width: 52px;
@@ -607,19 +627,38 @@ ul { list-style: none; }
   color: var(--teal);
   opacity: 0.4;
 }
-.process__step { text-align: center; }
+.process__step {
+  text-align: center;
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 24px 28px;
+  box-shadow: 0 2px 10px rgba(27, 42, 74, 0.04);
+  margin-top: 24px;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+.process__step:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(27, 42, 74, 0.10);
+}
 .process__step-num {
-  width: 44px;
-  height: 44px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: var(--teal);
   color: var(--white);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
+  font-family: var(--font-serif);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 12px;
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 20px rgba(3, 188, 199, 0.32), 0 0 0 4px var(--bg-light);
 }
 .process__step-icon {
   color: var(--teal);
