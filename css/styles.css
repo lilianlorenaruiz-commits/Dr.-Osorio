@@ -53,6 +53,32 @@ img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
+/* --- Accessibility: focus + skip link --- */
+
+/* Consistent keyboard focus across browsers. Only applies to keyboard
+   navigation (mouse clicks don't trigger :focus-visible in modern UAs). */
+:focus-visible {
+  outline: 2px solid var(--teal-dark);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip link: hidden offscreen until it receives keyboard focus, then it
+   slides into the top-left. Lets keyboard users jump past the nav. */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -48px;
+  background: var(--navy);
+  color: var(--white);
+  padding: 10px 16px;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius) var(--radius);
+  z-index: 1000;
+  transition: top 0.15s ease-out;
+}
+.skip-link:focus { top: 0; outline: 2px solid var(--gold); outline-offset: 2px; }
+
 /* --- Container --- */
 .container {
   max-width: var(--max-width);
@@ -1565,4 +1591,25 @@ ul { list-style: none; }
 @media (max-width: 480px) {
   .hero__actions { flex-direction: column; }
   .trust-bar__grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   PREFERS-REDUCED-MOTION
+   Honour the user's OS-level animation preference. This matters here because
+   the audience includes people with trauma, anxiety, and vestibular
+   sensitivities — fade-ins on scroll, hover lifts, and smooth scrolling can
+   trigger discomfort.
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* Skip the IntersectionObserver fade-in slide: render at final state. */
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

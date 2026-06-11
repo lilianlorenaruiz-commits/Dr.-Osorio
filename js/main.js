@@ -1,18 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Mobile menu toggle
+  // ----- Mobile menu -----
   const menuBtn = document.querySelector('.nav__menu-btn');
   const navLinks = document.querySelector('.nav__links');
 
+  // Centralised state setter so aria-expanded and aria-label stay in sync
+  // and we never pass a non-string value to setAttribute.
+  function setMobileMenu(open) {
+    if (!menuBtn || !navLinks) return;
+    navLinks.classList.toggle('nav__links--open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  function closeMobileMenu() { setMobileMenu(false); }
+  function isMobileMenuOpen() {
+    return !!(navLinks && navLinks.classList.contains('nav__links--open'));
+  }
+
   if (menuBtn && navLinks) {
-    menuBtn.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('nav__links--open');
-      menuBtn.setAttribute('aria-expanded', isOpen);
-    });
+    menuBtn.addEventListener('click', () => setMobileMenu(!isMobileMenuOpen()));
+
+    // Click outside the nav closes the menu. e.target may be a text node in
+    // some browsers, which lacks .closest — optional chaining keeps us safe.
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.nav')) {
-        navLinks.classList.remove('nav__links--open');
-        if (menuBtn) menuBtn.setAttribute('aria-expanded', false);
+      if (e.target.closest?.('.nav')) return;
+      closeMobileMenu();
+    });
+
+    // Tapping any link inside the open menu closes it so the menu does not
+    // cover the destination page when the user navigates.
+    navLinks.addEventListener('click', (e) => {
+      if (e.target.closest?.('a.nav__link, a.nav__dropdown-item')) {
+        closeMobileMenu();
       }
     });
   }
@@ -37,11 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Escape closes any open dropdown and returns focus to its toggle.
+  // Escape closes any open dropdown AND the mobile menu, returning focus to
+  // the most relevant toggle so the user does not lose their place.
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
     const open = document.querySelectorAll('.nav__dropdown--open');
-    if (!open.length) return;
     open.forEach(d => {
       d.classList.remove('nav__dropdown--open');
       const t = d.querySelector('.nav__dropdown-toggle');
@@ -50,6 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
         t.focus();
       }
     });
+    if (isMobileMenuOpen()) {
+      closeMobileMenu();
+      if (menuBtn) menuBtn.focus();
+    }
   });
 
   // Click outside a dropdown closes it.
@@ -63,8 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Smooth scroll for anchor links.
-  // Skip empty/bare "#" hrefs (used by placeholder footer links) so we don't
-  // call querySelector('#'), which throws SyntaxError in some browsers.
+  // - Skips empty/bare "#" hrefs (used by placeholder footer links) so we
+  //   don't call querySelector('#'), which throws SyntaxError in some
+  //   browsers.
+  // - Respects prefers-reduced-motion: if the user has it on, we jump
+  //   directly without animating.
+  const prefersReducedMotion = window.matchMedia
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const href = anchor.getAttribute('href');
@@ -73,7 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
       try { target = document.querySelector(href); } catch { return; }
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'start'
+        });
       }
     });
   });

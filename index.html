@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="images/optimized/dr-osorio-hero-c.jpg" />
-  <link rel="stylesheet" href="css/styles.css?v=8" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
 
   <!-- Structured Data: LocalBusiness + Person + WebSite + FAQPage -->
   <script type="application/ld+json">
@@ -56,7 +56,6 @@
         "telephone": "+16177522526",
         "email": "admin@drosoriopsych.com",
         "description": "Licensed psychologist providing immigration psychological evaluations, forensic psychological evaluations, and mental health evaluations in Massachusetts, Connecticut, and Florida, and via PSYPACT telehealth across 43 participating states.",
-        "medicalSpecialty": "Psychiatry",
         "availableLanguage": [
           { "@type": "Language", "name": "English" },
           { "@type": "Language", "name": "Spanish" }
@@ -280,6 +279,9 @@
 </head>
 <body>
 
+<!-- Skip link: invisible until focused with Tab, jumps over the nav for keyboard users. -->
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <!-- ============ NAVIGATION ============ -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
   <div class="nav__inner">
@@ -300,7 +302,7 @@
         <div class="nav__dropdown-menu" role="menu">
           <a href="immigration-psychological-evaluations.html" class="nav__dropdown-item" role="menuitem">Immigration Evaluations</a>
           <a href="forensic-psychological-evaluations.html" class="nav__dropdown-item" role="menuitem">Forensic Evaluations</a>
-          <a href="mental-health-psychological-evaluations.html" class="nav__dropdown-item" role="menuitem">Psychological Evaluations</a>
+          <a href="mental-health-psychological-evaluations.html" class="nav__dropdown-item" role="menuitem">Mental Health Evaluations</a>
         </div>
       </div>
       <a href="for-individuals.html" class="nav__link">For Individuals</a>
@@ -325,6 +327,8 @@
     </div>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ============ HERO ============ -->
 <section class="hero" aria-label="Hero">
@@ -361,9 +365,10 @@
       </div>
     </div>
   </div>
-  <div class="hero__image" aria-hidden="true">
+  <div class="hero__image">
     <!-- Hero office photo: warm therapy office, beige armchair, diplomas, plant -->
     <!-- Replace src with actual office photo when available -->
+    <!-- aria-hidden removed: this photo is informative (shows Dr. Osorio), the alt text must reach AT. -->
     <img src="images/optimized/dr-osorio-hero-c.jpg" alt="Dr. Claudia Osorio, Licensed Psychologist" width="800" height="900" fetchpriority="high" />
   </div>
 </section>
@@ -423,11 +428,11 @@
         <div class="service-card__icon-wrap" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
         </div>
-        <h3 class="service-card__title">Psychological Evaluations</h3>
-        <p class="service-card__body">Our psychological evaluations provide a structured view of the factors affecting behavior, cognitive abilities, emotional functioning, and daily life.</p>
+        <h3 class="service-card__title">Mental Health Evaluations</h3>
+        <p class="service-card__body">Our mental health evaluations provide a structured view of the factors affecting behavior, cognitive abilities, emotional functioning, and daily life.</p>
         <p class="service-card__body">These assessments help clarify symptoms, identify patterns, and document findings that support informed decisions, diagnostic understanding, and next steps when appropriate.</p>
         <a href="mental-health-psychological-evaluations.html" class="service-card__link">
-          Explore Psychological Evaluations
+          Explore Mental Health Evaluations
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </a>
       </article>
@@ -613,6 +618,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer" role="contentinfo">
