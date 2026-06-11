@@ -17,18 +17,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Dropdown keyboard support
+  // Dropdown: click/keyboard toggle + Escape + click-outside.
+  // CSS shows the menu via :hover OR via .nav__dropdown--open on the parent.
   document.querySelectorAll('.nav__dropdown-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', !expanded);
+    const dropdown = btn.closest('.nav__dropdown');
+    if (!dropdown) return;
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = !dropdown.classList.contains('nav__dropdown--open');
+      // Close any other open dropdowns so only one is open at a time.
+      document.querySelectorAll('.nav__dropdown--open').forEach(d => {
+        if (d === dropdown) return;
+        d.classList.remove('nav__dropdown--open');
+        const other = d.querySelector('.nav__dropdown-toggle');
+        if (other) other.setAttribute('aria-expanded', 'false');
+      });
+      dropdown.classList.toggle('nav__dropdown--open', willOpen);
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
     });
   });
 
-  // Smooth scroll for anchor links
+  // Escape closes any open dropdown and returns focus to its toggle.
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const open = document.querySelectorAll('.nav__dropdown--open');
+    if (!open.length) return;
+    open.forEach(d => {
+      d.classList.remove('nav__dropdown--open');
+      const t = d.querySelector('.nav__dropdown-toggle');
+      if (t) {
+        t.setAttribute('aria-expanded', 'false');
+        t.focus();
+      }
+    });
+  });
+
+  // Click outside a dropdown closes it.
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.nav__dropdown--open').forEach(d => {
+      if (d.contains(e.target)) return;
+      d.classList.remove('nav__dropdown--open');
+      const t = d.querySelector('.nav__dropdown-toggle');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Smooth scroll for anchor links.
+  // Skip empty/bare "#" hrefs (used by placeholder footer links) so we don't
+  // call querySelector('#'), which throws SyntaxError in some browsers.
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
-      const target = document.querySelector(anchor.getAttribute('href'));
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+      let target;
+      try { target = document.querySelector(href); } catch { return; }
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });

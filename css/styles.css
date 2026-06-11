@@ -10,6 +10,11 @@
   --teal:        #03bcc7;
   --teal-dark:   #029aa4;
   --teal-light:  #e6f9fa;
+  /* Accessible variants for CTAs that carry white text.
+     #03bcc7 with white text = 2.4:1 (fails WCAG AA).
+     #017a82 with white text = 4.6:1 (passes AA), darker hover #015e64 = 7.5:1. */
+  --teal-button:       #017a82;
+  --teal-button-hover: #015e64;
   --navy:        #1B2A4A;
   --navy-light:  #2C3E6B;
   --gold:        #C9944A;
@@ -113,7 +118,7 @@ ul { list-style: none; }
 .nav__link:hover { color: var(--teal); }
 .nav__link--active { color: var(--teal); }
 .nav__cta {
-  background: var(--teal);
+  background: var(--teal-button);
   color: var(--white) !important;
   padding: 9px 18px;
   border-radius: var(--radius);
@@ -125,7 +130,7 @@ ul { list-style: none; }
   transition: background 0.2s;
   white-space: nowrap;
 }
-.nav__cta:hover { background: var(--teal-dark); }
+.nav__cta:hover { background: var(--teal-button-hover); }
 
 /* Dropdown */
 .nav__dropdown { position: relative; }
@@ -143,7 +148,8 @@ ul { list-style: none; }
   color: var(--text-mid);
 }
 .nav__dropdown-toggle svg { transition: transform 0.2s; }
-.nav__dropdown:hover .nav__dropdown-toggle svg { transform: rotate(180deg); }
+.nav__dropdown:hover .nav__dropdown-toggle svg,
+.nav__dropdown--open .nav__dropdown-toggle svg { transform: rotate(180deg); }
 .nav__dropdown-menu {
   position: absolute;
   top: calc(100% + 12px);
@@ -159,7 +165,8 @@ ul { list-style: none; }
   transform: translateY(-8px);
   transition: all 0.2s;
 }
-.nav__dropdown:hover .nav__dropdown-menu {
+.nav__dropdown:hover .nav__dropdown-menu,
+.nav__dropdown--open .nav__dropdown-menu {
   opacity: 1;
   pointer-events: all;
   transform: translateY(0);
@@ -194,11 +201,11 @@ ul { list-style: none; }
 }
 .btn:active { transform: translateY(1px); }
 .btn--primary {
-  background: var(--teal);
+  background: var(--teal-button);
   color: var(--white);
-  border-color: var(--teal);
+  border-color: var(--teal-button);
 }
-.btn--primary:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
+.btn--primary:hover { background: var(--teal-button-hover); border-color: var(--teal-button-hover); }
 .btn--outline {
   background: transparent;
   color: var(--teal);
@@ -213,10 +220,11 @@ ul { list-style: none; }
 .btn--outline-white:hover { background: rgba(255,255,255,0.12); }
 .btn--gold {
   background: var(--gold);
-  color: var(--white);
+  /* Navy text on gold = ~6.5:1 (passes AA). White on gold was 2.65:1 (failed). */
+  color: var(--navy);
   border-color: var(--gold);
 }
-.btn--gold:hover { background: #b8833e; border-color: #b8833e; }
+.btn--gold:hover { background: #b8833e; border-color: #b8833e; color: var(--navy); }
 
 /* ============================================
    HERO SECTION
@@ -488,10 +496,10 @@ ul { list-style: none; }
   justify-content: center;
 }
 .path-card--individuals .path-card__cta {
-  background: var(--teal);
+  background: var(--teal-button);
   color: var(--white);
 }
-.path-card--individuals .path-card__cta:hover { background: var(--teal-dark); }
+.path-card--individuals .path-card__cta:hover { background: var(--teal-button-hover); }
 .path-card--attorneys   .path-card__cta {
   background: var(--pink-accent);
   color: var(--white);
@@ -667,7 +675,7 @@ ul { list-style: none; }
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--teal-button);
   color: var(--white);
   font-size: 20px;
   font-weight: 700;
@@ -679,6 +687,7 @@ ul { list-style: none; }
   top: -26px;
   left: 50%;
   transform: translateX(-50%);
+  /* Halo conserva el --teal vivo para no perder identidad visual. */
   box-shadow: 0 8px 20px rgba(3, 188, 199, 0.32), 0 0 0 4px var(--bg-light);
 }
 .process__step-icon {
