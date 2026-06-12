@@ -109,11 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Active nav link based on current page
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  // Active nav link based on current page.
+  // Compares the filename of each link's pathname (DOM property, which already
+  // strips any #hash or ?query) against the current page, so deep links like
+  // "for-individuals.html#evaluation-types" still match "for-individuals.html".
+  const pageFile = (path) => {
+    const file = path.split('/').pop();
+    return file === '' ? 'index.html' : file;
+  };
+  const current = pageFile(window.location.pathname);
   document.querySelectorAll('.nav__link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    if (!link.getAttribute('href')) return; // skip the dropdown <button> toggle
+    if (pageFile(link.pathname) === current) {
       link.classList.add('nav__link--active');
     }
   });

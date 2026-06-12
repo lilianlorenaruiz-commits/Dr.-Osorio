@@ -22,7 +22,7 @@
   --pink-accent: #9b589b;
   --text-dark:   #1A1A2E;
   --text-mid:    #444B5A;
-  --text-light:  #6B7280;
+  --text-light:  #5B6472;  /* darkened from #6B7280 (4.64:1) to ~5.7:1 on bg-light for AA margin */
   --border:      #E5E7EB;
   --white:       #FFFFFF;
   --bg-light:    #F9FAFB;
@@ -199,7 +199,7 @@ ul { list-style: none; }
 }
 .nav__dropdown-item {
   display: block;
-  padding: 10px 16px;
+  padding: 12px 16px;  /* ~47px tall touch target (WCAG 2.5.5) */
   font-size: 14px;
   color: var(--text-mid);
   transition: background 0.15s, color 0.15s;
@@ -926,7 +926,7 @@ ul { list-style: none; }
 }
 .footer__copy { font-size: 12px; }
 .footer__legal { display: flex; gap: 20px; }
-.footer__legal a { font-size: 12px; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+.footer__legal a { font-size: 12px; color: rgba(255,255,255,0.5); transition: color 0.2s; padding: 8px 0; display: inline-block; }
 .footer__legal a:hover { color: var(--white); }
 
 /* ============================================
@@ -1125,7 +1125,7 @@ ul { list-style: none; }
   margin: 0 auto;
   background: var(--teal-light);
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(13,157,142,0.2);
+  border: 1px solid rgba(3,188,199,0.2);  /* was rgba(13,157,142,...) = old teal #0D9D8E, now matches --teal #03bcc7 */
   padding: 36px;
 }
 .deliverables__title {
@@ -1263,7 +1263,7 @@ ul { list-style: none; }
   font-weight: 600;
   padding: 5px 12px;
   border-radius: 20px;
-  border: 1px solid rgba(13,157,142,0.2);
+  border: 1px solid rgba(3,188,199,0.2);  /* was old teal #0D9D8E, now matches --teal #03bcc7 */
 }
 .specialist-director__actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -1545,9 +1545,9 @@ ul { list-style: none; }
     display: flex;
     align-items: center;
     gap: 6px;
-    background: var(--teal);
+    background: var(--teal-button);  /* white text needs the AA-safe teal, not #03bcc7 (2.4:1) */
     color: var(--white);
-    padding: 8px 14px;
+    padding: 10px 16px;  /* ~40px touch target, up from 8px 14px */
     border-radius: var(--radius);
     font-size: 13px;
     font-weight: 600;
