@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuBtn = document.querySelector('.nav__menu-btn');
   const navLinks = document.querySelector('.nav__links');
 
+  // Collapse every open dropdown and reset its toggle's ARIA state.
+  // Shared so the mobile menu, Escape, and click-outside all stay consistent.
+  function closeAllDropdowns() {
+    document.querySelectorAll('.nav__dropdown--open').forEach(d => {
+      d.classList.remove('nav__dropdown--open');
+      const t = d.querySelector('.nav__dropdown-toggle');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+  }
+
   // Centralised state setter so aria-expanded and aria-label stay in sync
   // and we never pass a non-string value to setAttribute.
   function setMobileMenu(open) {
@@ -11,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.classList.toggle('nav__links--open', open);
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    // Closing the menu also collapses any dropdown left open inside it, so it
+    // doesn't reappear pre-expanded (with stale aria-expanded) on reopen.
+    if (!open) closeAllDropdowns();
   }
   function closeMobileMenu() { setMobileMenu(false); }
   function isMobileMenuOpen() {
@@ -42,6 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropdown = btn.closest('.nav__dropdown');
     if (!dropdown) return;
     btn.addEventListener('click', (e) => {
+      // Intentional: stops this click from reaching the document-level
+      // click-outside handlers below, which would otherwise immediately
+      // re-close the dropdown we're toggling open. If you add other
+      // document click listeners later, account for this.
       e.stopPropagation();
       const willOpen = !dropdown.classList.contains('nav__dropdown--open');
       // Close any other open dropdowns so only one is open at a time.
@@ -114,8 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // strips any #hash or ?query) against the current page, so deep links like
   // "for-individuals.html#evaluation-types" still match "for-individuals.html".
   const pageFile = (path) => {
-    const file = path.split('/').pop();
-    return file === '' ? 'index.html' : file;
+    // Strip trailing slashes, take the last segment, default to index.html,
+    // and lowercase so matching is robust to casing and trailing-slash URLs.
+    const file = path.replace(/\/+$/, '').split('/').pop();
+    return (file || 'index.html').toLowerCase();
   };
   const current = pageFile(window.location.pathname);
   document.querySelectorAll('.nav__link').forEach(link => {

@@ -141,8 +141,8 @@ ul { list-style: none; }
   transition: color 0.2s;
   white-space: nowrap;
 }
-.nav__link:hover { color: var(--teal); }
-.nav__link--active { color: var(--teal); }
+.nav__link:hover { color: var(--teal-button); }
+.nav__link--active { color: var(--teal-button); }
 .nav__cta {
   background: var(--teal-button);
   color: var(--white) !important;
@@ -234,8 +234,9 @@ ul { list-style: none; }
 .btn--primary:hover { background: var(--teal-button-hover); border-color: var(--teal-button-hover); }
 .btn--outline {
   background: transparent;
-  color: var(--teal);
-  border-color: var(--teal);
+  /* teal-button (not --teal) so the teal text/border reach AA on white. */
+  color: var(--teal-button);
+  border-color: var(--teal-button);
 }
 .btn--outline:hover { background: var(--teal-light); }
 .btn--outline-white {
@@ -274,7 +275,7 @@ ul { list-style: none; }
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--teal-button);  /* AA on white: #017a82 = 6.2:1 vs #03bcc7 = 2.3:1 */
   margin-bottom: 16px;
 }
 .hero__title {
@@ -554,7 +555,7 @@ ul { list-style: none; }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--teal-button);  /* AA on white */
   margin-bottom: 10px;
 }
 .section-header__title {
@@ -655,7 +656,7 @@ ul { list-style: none; }
   gap: 6px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--teal);
+  color: var(--teal-button);  /* AA on white; arrow icon provides the non-color link cue (1.4.1) */
   transition: gap 0.2s;
 }
 .service-card__link:hover { gap: 10px; }
