@@ -102,28 +102,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Smooth scroll for anchor links.
-  // - Skips empty/bare "#" hrefs (used by placeholder footer links) so we
-  //   don't call querySelector('#'), which throws SyntaxError in some
-  //   browsers.
-  // - Respects prefers-reduced-motion: if the user has it on, we jump
-  //   directly without animating.
+  // Smooth scroll for in-page anchors.
+  // Single delegated listener handles three cases:
+  //   1. <a href="#anchor">          — classic in-page jump
+  //   2. <a href="this-page.html#x"> — deep link to OWN page (e.g. nav item
+  //      pointing to the same file the user is already on). Used to hard-jump.
+  //   3. <a href="other.html#x">     — cross-page link. Let the browser handle.
+  // Uses the anchor's resolved .origin/.pathname/.hash (DOM URL parsing) so we
+  // don't have to manually strip ./ ../ or trailing slashes from the raw href.
+  // Bare "#" hrefs (placeholder footer links) short-circuit at the hash check.
+  // Respects prefers-reduced-motion.
   const prefersReducedMotion = window.matchMedia
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (!href || href === '#') return;
-      let target;
-      try { target = document.querySelector(href); } catch { return; }
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({
-          behavior: prefersReducedMotion ? 'auto' : 'smooth',
-          block: 'start'
-        });
-      }
-    });
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest?.('a[href]');
+    if (!anchor) return;
+    if (!anchor.hash || anchor.hash === '#') return;
+    if (anchor.origin !== location.origin) return;
+    if (anchor.pathname !== location.pathname) return;
+    let target;
+    try { target = document.querySelector(anchor.hash); } catch { return; }
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    }
   });
 
   // Active nav link based on current page.

@@ -82,17 +82,17 @@
 
     <div class="nav__links" id="nav-links">
       <div class="nav__dropdown">
-        <button class="nav__link nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+        <button class="nav__link nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true" aria-controls="services-menu">
           Services
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </button>
-        <div class="nav__dropdown-menu">
+        <div class="nav__dropdown-menu" id="services-menu">
           <a href="immigration-psychological-evaluations.html" class="nav__dropdown-item">Immigration Evaluations</a>
           <a href="forensic-psychological-evaluations.html" class="nav__dropdown-item">Forensic Evaluations</a>
-          <a href="mental-health-psychological-evaluations.html" class="nav__dropdown-item">Mental Health Evaluations</a>
+          <a href="mental-health-psychological-evaluations.html" class="nav__dropdown-item">Psychological Evaluations</a>
         </div>
       </div>
-      <a href="for-individuals.html" class="nav__link nav__link--active">For Individuals</a>
+      <a href="for-individuals.html" class="nav__link">For Individuals</a>
       <a href="for-attorneys.html" class="nav__link">For Attorneys</a>
       <a href="specialists.html" class="nav__link">Specialists</a>
       <a href="about.html" class="nav__link">About</a>
@@ -153,10 +153,10 @@
       <p class="section-header__body">Each evaluation is designed to address a specific need. Review the options below to identify which type of evaluation fits your situation.</p>
     </div>
 
-    <div class="services__grid">
+    <div class="services__grid" role="list">
 
       <!-- Card 1: Immigration -->
-      <article class="service-card">
+      <article class="service-card" role="listitem">
         <div class="service-card__icon-wrap" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/></svg>
         </div>
@@ -170,7 +170,7 @@
       </article>
 
       <!-- Card 2: Forensic -->
-      <article class="service-card">
+      <article class="service-card" role="listitem">
         <div class="service-card__icon-wrap" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 14a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.616a1 1 0 01.894-1.79l1.599.8L9 4.323V3a1 1 0 011-1z" clip-rule="evenodd"/></svg>
         </div>
@@ -184,7 +184,7 @@
       </article>
 
       <!-- Card 3: Psychological -->
-      <article class="service-card">
+      <article class="service-card" role="listitem">
         <div class="service-card__icon-wrap" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
         </div>
@@ -302,7 +302,7 @@
       <ul class="footer__links" role="list">
         <li><a href="immigration-psychological-evaluations.html" class="footer__link">Immigration Psychological Evaluations</a></li>
         <li><a href="forensic-psychological-evaluations.html" class="footer__link">Forensic Psychological Evaluations</a></li>
-        <li><a href="mental-health-psychological-evaluations.html" class="footer__link">Mental Health Evaluations</a></li>
+        <li><a href="mental-health-psychological-evaluations.html" class="footer__link">Psychological Evaluations</a></li>
       </ul>
     </nav>
 
