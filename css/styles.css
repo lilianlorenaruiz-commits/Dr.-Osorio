@@ -206,7 +206,9 @@ ul { list-style: none; }
 }
 .nav__dropdown-item:hover {
   background: var(--teal-light);
-  color: var(--teal);
+  /* teal-button (not --teal): #017a82 on #e6f9fa = ~4.7:1, passes AA. The old
+     --teal #03bcc7 on teal-light was 2.14:1 (failed) on hover. */
+  color: var(--teal-button);
 }
 
 /* ============================================
