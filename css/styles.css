@@ -344,7 +344,12 @@ ul { list-style: none; }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 11px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--navy);
   display: flex;
   align-items: center;
@@ -929,8 +934,20 @@ ul { list-style: none; }
 }
 .footer__copy { font-size: 12px; }
 .footer__legal { display: flex; gap: 20px; }
-.footer__legal a { font-size: 12px; color: rgba(255,255,255,0.5); transition: color 0.2s; padding: 8px 0; display: inline-block; }
+/* Target size: bumped to 44px height (12px font + 16px*2 padding ≈ 44px box)
+   so touch targets meet AAA on mobile. The 8px horizontal padding keeps the
+   visual rhythm with footer__copy at the same baseline. */
+.footer__legal a { font-size: 12px; color: rgba(255,255,255,0.5); transition: color 0.2s; padding: 16px 8px; display: inline-block; }
 .footer__legal a:hover { color: var(--white); }
+
+/* Footer state tag (MA/CT/FL labels above each office address). Replaces an
+   inline style="..." that was being copy-pasted per page. */
+.footer__region-tag {
+  color: rgba(255,255,255,0.8);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 
 /* ============================================
    BREADCRUMB
