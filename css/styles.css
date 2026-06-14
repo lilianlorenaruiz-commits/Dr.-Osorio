@@ -347,9 +347,6 @@ ul { list-style: none; }
   padding: 11px;
   min-width: 44px;
   min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   color: var(--navy);
   display: flex;
   align-items: center;
@@ -921,6 +918,8 @@ ul { list-style: none; }
   line-height: 1.5;
 }
 .footer__contact-item svg { color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+/* Spacer modifier used to separate the hours row from the addresses block. */
+.footer__contact-item--spaced { margin-top: 8px; }
 .footer__bottom {
   max-width: var(--max-width);
   margin: 0 auto;
