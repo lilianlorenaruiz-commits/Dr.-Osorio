@@ -949,8 +949,10 @@ ul { list-style: none; }
   font-size: 13px;
   color: var(--text-light);
 }
-.breadcrumb__inner a { color: var(--teal); transition: color 0.2s; }
-.breadcrumb__inner a:hover { color: var(--teal-dark); }
+/* teal-button (not --teal) so the link reaches AA on bg-light.
+   --teal #03bcc7 on white was 2.3:1 (failed); --teal-button #017a82 is 5.1:1. */
+.breadcrumb__inner a { color: var(--teal-button); transition: color 0.2s; }
+.breadcrumb__inner a:hover { color: var(--teal-button-hover); }
 .breadcrumb__sep { color: var(--border); }
 .breadcrumb__current { color: var(--text-mid); font-weight: 500; }
 
@@ -988,6 +990,19 @@ ul { list-style: none; }
   line-height: 1.18;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
+}
+/* Lead / deck: bridges the H1 and the body paragraphs. Slightly larger than body,
+   serif and brighter to keep editorial feel without competing with the H1. */
+.page-hero__lead {
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 500;
+  font-style: italic;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  margin: 0 auto 24px;
+  max-width: 680px;
 }
 .page-hero__body {
   font-size: 16px;
