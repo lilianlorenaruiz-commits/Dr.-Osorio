@@ -252,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = val('phone');
       const evalType = val('evaluationType');
       const jurisdiction = val('jurisdiction');
+      const urgency = val('urgency');
       const notes = val('caseNotes');
 
       const subject = 'Request Provider Packet: ' + (firm || name || 'Attorney inquiry');
@@ -261,11 +262,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'I would like to request a provider packet for the following matter:',
         '',
         'Attorney: ' + (name || '(not provided)'),
-        'Law Firm: ' + (firm || '(not provided)'),
         'Email: ' + (email || '(not provided)'),
+        'Law Firm: ' + (firm || '(not provided)'),
         'Phone: ' + (phone || '(not provided)'),
         'Type of Evaluation: ' + (evalType || '(not provided)'),
         'Jurisdiction: ' + (jurisdiction || '(not provided)'),
+        'Case Urgency: ' + (urgency || '(not specified)'),
         '',
         'Brief description of the case:',
         notes || '(none provided)',

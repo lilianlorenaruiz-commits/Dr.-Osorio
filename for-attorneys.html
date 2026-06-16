@@ -34,7 +34,7 @@
   <!-- Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/styles.css?v=18" />
+  <link rel="stylesheet" href="css/styles.css?v=19" />
 
   <!-- Structured Data: BreadcrumbList + WebPage -->
   <script type="application/ld+json">
@@ -390,7 +390,11 @@
       </button>
     </header>
 
-    <p class="modal__intro">Share a few details about the case and we will send our provider packet and follow up to coordinate next steps.</p>
+    <p class="modal__microcopy">For attorneys · Takes less than 1 minute · Please share a few details about the case and we will send our provider packet.</p>
+
+    <p class="modal__intro">We will contact you based on the information provided to discuss the evaluation request for your case.</p>
+
+    <h3 class="form__section-title">Contact Information</h3>
 
     <div class="form__row">
       <label class="form__field">
@@ -398,21 +402,23 @@
         <input type="text" name="attorneyName" class="form__input" autocomplete="name" maxlength="100" required />
       </label>
       <label class="form__field">
-        <span class="form__label">Law Firm</span>
-        <input type="text" name="lawFirm" class="form__input" autocomplete="organization" maxlength="120" />
+        <span class="form__label">Email <span class="form__required" aria-hidden="true">*</span></span>
+        <input type="email" name="email" class="form__input" autocomplete="email" maxlength="120" required />
       </label>
     </div>
 
     <div class="form__row">
       <label class="form__field">
-        <span class="form__label">Email <span class="form__required" aria-hidden="true">*</span></span>
-        <input type="email" name="email" class="form__input" autocomplete="email" maxlength="120" required />
+        <span class="form__label">Law Firm</span>
+        <input type="text" name="lawFirm" class="form__input" autocomplete="organization" maxlength="120" />
       </label>
       <label class="form__field">
         <span class="form__label">Phone</span>
         <input type="tel" name="phone" class="form__input" autocomplete="tel" maxlength="30" />
       </label>
     </div>
+
+    <h3 class="form__section-title">Evaluation Details</h3>
 
     <div class="form__row">
       <label class="form__field">
@@ -426,17 +432,82 @@
         </select>
       </label>
       <label class="form__field">
-        <span class="form__label">Jurisdiction or State</span>
-        <input type="text" name="jurisdiction" class="form__input" placeholder="e.g. Massachusetts" maxlength="80" />
+        <span class="form__label">Jurisdiction State</span>
+        <select name="jurisdiction" class="form__input form__select">
+          <option value="">Select a state</option>
+          <option value="Alabama">Alabama</option>
+          <option value="Alaska">Alaska</option>
+          <option value="Arizona">Arizona</option>
+          <option value="Arkansas">Arkansas</option>
+          <option value="California">California</option>
+          <option value="Colorado">Colorado</option>
+          <option value="Connecticut">Connecticut</option>
+          <option value="Delaware">Delaware</option>
+          <option value="District of Columbia">District of Columbia</option>
+          <option value="Florida">Florida</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Hawaii">Hawaii</option>
+          <option value="Idaho">Idaho</option>
+          <option value="Illinois">Illinois</option>
+          <option value="Indiana">Indiana</option>
+          <option value="Iowa">Iowa</option>
+          <option value="Kansas">Kansas</option>
+          <option value="Kentucky">Kentucky</option>
+          <option value="Louisiana">Louisiana</option>
+          <option value="Maine">Maine</option>
+          <option value="Maryland">Maryland</option>
+          <option value="Massachusetts">Massachusetts</option>
+          <option value="Michigan">Michigan</option>
+          <option value="Minnesota">Minnesota</option>
+          <option value="Mississippi">Mississippi</option>
+          <option value="Missouri">Missouri</option>
+          <option value="Montana">Montana</option>
+          <option value="Nebraska">Nebraska</option>
+          <option value="Nevada">Nevada</option>
+          <option value="New Hampshire">New Hampshire</option>
+          <option value="New Jersey">New Jersey</option>
+          <option value="New Mexico">New Mexico</option>
+          <option value="New York">New York</option>
+          <option value="North Carolina">North Carolina</option>
+          <option value="North Dakota">North Dakota</option>
+          <option value="Ohio">Ohio</option>
+          <option value="Oklahoma">Oklahoma</option>
+          <option value="Oregon">Oregon</option>
+          <option value="Pennsylvania">Pennsylvania</option>
+          <option value="Puerto Rico">Puerto Rico</option>
+          <option value="Rhode Island">Rhode Island</option>
+          <option value="South Carolina">South Carolina</option>
+          <option value="South Dakota">South Dakota</option>
+          <option value="Tennessee">Tennessee</option>
+          <option value="Texas">Texas</option>
+          <option value="Utah">Utah</option>
+          <option value="Vermont">Vermont</option>
+          <option value="Virginia">Virginia</option>
+          <option value="Washington">Washington</option>
+          <option value="West Virginia">West Virginia</option>
+          <option value="Wisconsin">Wisconsin</option>
+          <option value="Wyoming">Wyoming</option>
+          <option value="Other / Federal">Other / Federal</option>
+        </select>
       </label>
     </div>
 
     <label class="form__field">
-      <span class="form__label">Brief Description of the Case</span>
-      <textarea name="caseNotes" class="form__input form__textarea" rows="4" maxlength="2000" placeholder="A short summary helps us prepare for the call."></textarea>
+      <span class="form__label">Case Urgency <span class="form__optional">(optional)</span></span>
+      <select name="urgency" class="form__input form__select">
+        <option value="">Select urgency</option>
+        <option value="Urgent">Urgent</option>
+        <option value="1-2 weeks">1-2 weeks</option>
+        <option value="3-4 weeks">3-4 weeks</option>
+      </select>
     </label>
 
-    <p class="modal__note">Submitting opens your email client with the details prefilled and addressed to <strong>admin@drosoriopsych.com</strong>. Please avoid including privileged client identifiers here. Share those securely during the intake call.</p>
+    <label class="form__field">
+      <span class="form__label">Brief Description of the Case</span>
+      <textarea name="caseNotes" class="form__input form__textarea" rows="4" maxlength="2000" placeholder="Any specific details you would like us to consider."></textarea>
+    </label>
+
+    <p class="modal__note">By submitting this form, you authorize Dr. Claudia Osorio Psychological Services to respond to your inquiry by email and to contact you directly at the phone number provided. Please do not include confidential information or client identifying details in this form.</p>
 
     <div class="modal__actions">
       <button type="button" class="btn btn--ghost" data-close-modal>Cancel</button>
@@ -459,6 +530,6 @@
   </div>
 </dialog>
 
-<script src="js/main.js?v=2"></script>
+<script src="js/main.js?v=3"></script>
 </body>
 </html>
