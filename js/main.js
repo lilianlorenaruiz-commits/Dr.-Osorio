@@ -149,6 +149,150 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ----- Modal: open from [data-open-modal], close from [data-close-modal] -----
+  // Uses native <dialog>: Escape closes automatically and focus is trapped by
+  // the browser. We add:
+  //   - body scroll lock (.modal-open)
+  //   - click-on-backdrop to close
+  //   - return focus to the opener
+  //   - mailto submit handler for [data-modal-form]
+  let lastModalTrigger = null;
+
+  // Single owner of dialog teardown. Calling modal.close() synchronously fires
+  // the 'close' event, and the close listener below performs body-class cleanup
+  // and focus restoration. Here we only initiate the close.
+  function closeModalEl(modal) {
+    if (!modal || typeof modal.close !== 'function') return;
+    try {
+      modal.close();
+    } catch (err) {
+      if (err && err.name !== 'InvalidStateError') {
+        console.warn('[modal] close failed', err);
+      }
+    }
+  }
+
+  document.querySelectorAll('[data-open-modal]').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      const id = trigger.getAttribute('data-open-modal');
+      if (!id) return;
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      e.preventDefault();
+      e.stopPropagation();
+      // Fallback for browsers without native <dialog> support (Safari <15.4,
+      // Firefox <98, some in-app webviews). Open a generic mailto so the user
+      // does not end up with a dead click on the page's main lead CTA.
+      if (typeof modal.showModal !== 'function') {
+        window.location.href = 'mailto:admin@drosoriopsych.com'
+          + '?subject=' + encodeURIComponent('Request Provider Packet')
+          + '&body=' + encodeURIComponent('I would like to request the provider packet. Please reach out so we can coordinate.');
+        return;
+      }
+      try {
+        modal.showModal();
+        lastModalTrigger = trigger;
+        document.body.classList.add('modal-open');
+      } catch (err) {
+        console.warn('[modal] showModal failed', err);
+      }
+    });
+  });
+
+  document.querySelectorAll('dialog.modal').forEach(modal => {
+    // Native close (Escape, form method="dialog", or .close()) syncs the body
+    // and returns focus to whoever opened the dialog. This is the SINGLE
+    // owner of post-close cleanup — closeModalEl only initiates the close.
+    modal.addEventListener('close', () => {
+      document.body.classList.remove('modal-open');
+      const opener = lastModalTrigger;
+      lastModalTrigger = null;
+      // Reset the dialog: form visible + cleared, confirmation panel hidden.
+      // This guarantees a fresh state if the same dialog is reopened later.
+      const form = modal.querySelector('[data-modal-form]');
+      const confirmation = modal.querySelector('.modal__confirmation');
+      if (form) {
+        form.hidden = false;
+        if (typeof form.reset === 'function') form.reset();
+      }
+      if (confirmation) confirmation.hidden = true;
+      if (opener && typeof opener.focus === 'function' && document.contains(opener)) {
+        opener.focus({ preventScroll: true });
+      }
+    });
+    // Click on the dialog element itself (i.e. the backdrop area) closes it,
+    // but clicks on the inner form bubble up with e.target inside the form.
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModalEl(modal);
+    });
+  });
+
+  document.querySelectorAll('[data-close-modal]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const modal = btn.closest('dialog.modal');
+      if (!modal) return;
+      e.preventDefault();
+      closeModalEl(modal);
+    });
+  });
+
+  // Mailto submit: build a prefilled email from the form fields and open the
+  // user's email client. No data is sent over the network from this page.
+  document.querySelectorAll('[data-modal-form]').forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // The browser's native validation (required, type=email, maxlength) runs
+      // BEFORE the submit event is dispatched. If we reached this handler, the
+      // required fields are populated and the email shape is acceptable.
+      const data = new FormData(form);
+      const val = (k) => (data.get(k) || '').toString().trim();
+      const name = val('attorneyName');
+      const firm = val('lawFirm');
+      const email = val('email');
+      const phone = val('phone');
+      const evalType = val('evaluationType');
+      const jurisdiction = val('jurisdiction');
+      const notes = val('caseNotes');
+
+      const subject = 'Request Provider Packet: ' + (firm || name || 'Attorney inquiry');
+      const lines = [
+        'Hello Dr. Osorio,',
+        '',
+        'I would like to request a provider packet for the following matter:',
+        '',
+        'Attorney: ' + (name || '(not provided)'),
+        'Law Firm: ' + (firm || '(not provided)'),
+        'Email: ' + (email || '(not provided)'),
+        'Phone: ' + (phone || '(not provided)'),
+        'Type of Evaluation: ' + (evalType || '(not provided)'),
+        'Jurisdiction: ' + (jurisdiction || '(not provided)'),
+        '',
+        'Brief description of the case:',
+        notes || '(none provided)',
+        '',
+        'Thank you,',
+        name || ''
+      ];
+      const body = lines.join('\n');
+      const href = 'mailto:admin@drosoriopsych.com?subject='
+        + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+      // Swap to the confirmation panel BEFORE firing the mailto so the user
+      // sees a stable confirmation state regardless of whether the mailto
+      // succeeds, silently fails, or causes a brief navigation flicker. The
+      // dialog stays open until they explicitly dismiss it.
+      const modal = form.closest('dialog.modal');
+      const confirmation = modal && modal.querySelector('.modal__confirmation');
+      if (modal && confirmation) {
+        form.hidden = true;
+        confirmation.hidden = false;
+        const closeBtn = confirmation.querySelector('[data-close-modal]');
+        if (closeBtn) closeBtn.focus({ preventScroll: true });
+      }
+      window.location.href = href;
+    });
+  });
+
   // Animate elements on scroll (subtle fade-in)
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
