@@ -18,6 +18,7 @@
   --navy:        #1B2A4A;
   --navy-light:  #2C3E6B;
   --gold:        #C9944A;
+  --gold-dark:   #b8833e;
   --pink-light:  #F5ECF5;
   --pink-accent: #9b589b;
   --text-dark:   #1A1A2E;
@@ -253,7 +254,7 @@ ul { list-style: none; }
   color: var(--navy);
   border-color: var(--gold);
 }
-.btn--gold:hover { background: #b8833e; border-color: #b8833e; color: var(--navy); }
+.btn--gold:hover { background: var(--gold-dark); border-color: var(--gold-dark); color: var(--navy); }
 
 /* ============================================
    HERO SECTION
@@ -893,7 +894,9 @@ ul { list-style: none; }
   margin-bottom: 16px;
 }
 .footer__logo-name { font-size: 14px; font-weight: 700; color: var(--white); }
-.footer__logo-sub  { font-size: 11px; color: rgba(255,255,255,0.5); }
+/* rgba alpha 0.6 over --navy composites to ~rgb(164,170,183), giving ~5.2:1 (passes AA).
+   Alpha 0.5 was ~4.38:1 and failed AA for 11px non-bold. */
+.footer__logo-sub  { font-size: 11px; color: rgba(255,255,255,0.6); }
 .footer__tagline {
   font-size: 13px;
   line-height: 1.65;
@@ -946,7 +949,7 @@ ul { list-style: none; }
 /* Target size: bumped to 44px height (12px font + 16px*2 padding ≈ 44px box)
    so touch targets meet AAA on mobile. The 8px horizontal padding keeps the
    visual rhythm with footer__copy at the same baseline. */
-.footer__legal a { font-size: 12px; color: rgba(255,255,255,0.5); transition: color 0.2s; padding: 16px 8px; display: inline-block; }
+.footer__legal a { font-size: 12px; color: rgba(255,255,255,0.6); transition: color 0.2s; padding: 16px 8px; display: inline-block; }
 .footer__legal a:hover { color: var(--white); }
 
 /* Footer state tag (MA/CT/FL labels above each office address). Replaces an
