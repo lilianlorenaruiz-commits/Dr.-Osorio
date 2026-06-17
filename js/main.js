@@ -312,4 +312,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // PSYPACT Interactive Map: tooltip on hover/tap.
+  // Event delegation on the map container reads data-state and
+  // data-participating from each path/circle and positions a tooltip
+  // relative to the container. Native <title> elements remain in the
+  // SVG as a fallback for assistive tech.
+  const psypactMap = document.querySelector('[data-psypact-map]');
+  if (psypactMap) {
+    const tooltip = document.getElementById('psypact-tooltip');
+    const nameEl = tooltip && tooltip.querySelector('.psypact-map__tooltip-name');
+    const statusEl = tooltip && tooltip.querySelector('.psypact-map__tooltip-status');
+
+    function showFor(target, evtX, evtY) {
+      if (!tooltip || !nameEl || !statusEl) return;
+      const name = target.getAttribute('data-state');
+      const participating = target.getAttribute('data-participating') === 'true';
+      if (!name) return;
+      nameEl.textContent = name;
+      statusEl.textContent = participating
+        ? 'PSYPACT Participating State, Effective'
+        : 'Not a PSYPACT state';
+      statusEl.classList.toggle('psypact-map__tooltip-status--not', !participating);
+      tooltip.setAttribute('aria-hidden', 'false');
+      const rect = psypactMap.getBoundingClientRect();
+      let x, y;
+      if (typeof evtX === 'number' && typeof evtY === 'number') {
+        x = evtX - rect.left;
+        y = evtY - rect.top;
+      } else {
+        const tRect = target.getBoundingClientRect();
+        x = tRect.left - rect.left + tRect.width / 2;
+        y = tRect.top - rect.top + tRect.height / 2;
+      }
+      x = Math.max(110, Math.min(x, rect.width - 110));
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+    }
+
+    function hide() {
+      if (tooltip) tooltip.setAttribute('aria-hidden', 'true');
+    }
+
+    psypactMap.addEventListener('mousemove', (e) => {
+      const t = e.target.closest('[data-state]');
+      if (t) showFor(t, e.clientX, e.clientY);
+      else hide();
+    });
+    psypactMap.addEventListener('mouseleave', hide);
+
+    psypactMap.addEventListener('click', (e) => {
+      const t = e.target.closest('[data-state]');
+      if (t) showFor(t);
+      else hide();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!psypactMap.contains(e.target)) hide();
+    });
+
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+  }
+
 });

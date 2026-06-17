@@ -1,0 +1,14 @@
+# OS metadata
+desktop.ini
+.DS_Store
+Thumbs.db
+
+# Temp / scratch files used during build steps
+.tmp-*
+*.tmp
+
+# Editor / IDE local state
+.vscode/
+.idea/
+*.swp
+*~

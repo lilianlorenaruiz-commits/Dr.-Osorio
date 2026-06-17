@@ -1251,19 +1251,36 @@ p { text-wrap: pretty; }
   font-style: italic;
   line-height: 1.6;
 }
+/* Note that applies to both audiences sits below the grid, centered. */
+.who-for__shared-note {
+  max-width: 760px;
+  margin: 32px auto 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-light);
+  font-style: italic;
+  line-height: 1.7;
+  padding: 0 24px;
+}
 
 /* PSYPACT badge: bordered chip with shield icon + provider label.
    Placeholder until the official PSYPACT logo image is integrated. */
 .psypact-badge {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   padding: 14px 22px;
   background: var(--white);
   border: 2px solid var(--teal-button);
   border-radius: 14px;
   margin: 8px auto 28px;
   box-shadow: 0 2px 12px rgba(27, 42, 74, 0.06);
+}
+.psypact-badge__logo {
+  width: 120px;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
 }
 .psypact-badge svg { color: var(--teal-button); flex-shrink: 0; }
 .psypact-badge__text { display: flex; flex-direction: column; text-align: left; gap: 2px; }
@@ -1304,6 +1321,126 @@ p { text-wrap: pretty; }
    Wraps a btn--outline teal-button styled CTA pointing to psypact.gov. */
 .psypact-cta { text-align: center; margin-top: 8px; }
 .psypact-cta .btn { display: inline-flex; }
+
+/* ============================================
+   PSYPACT INTERACTIVE MAP
+   Inline SVG (Wikimedia "Blank US Map (states only)", public domain).
+   Each state path carries data-state + data-participating attrs.
+   JS handler in main.js positions the tooltip on hover/focus/tap.
+   ============================================ */
+.psypact-map {
+  margin: 24px auto 36px;
+  max-width: 1000px;
+}
+.psypact-map__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 20px;
+  font-size: 13px;
+  color: var(--text-mid);
+}
+.psypact-map__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.psypact-map__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.psypact-map__swatch--effective { background: var(--teal-pale); border-color: #b8dde0; }
+.psypact-map__swatch--not { background: #ECEEF1; border-color: #d0d4db; }
+
+/* Viewport relative for tooltip positioning. */
+.psypact-map__viewport {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+.psypact-map__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+/* State borders are rendered via the SVG's own <g class="borders">.
+   We restyle them since the embedded <style> block was stripped. */
+.psypact-map__svg .borders { stroke: var(--white); stroke-width: 1; fill: none; }
+.psypact-map__svg .separator1 { stroke: var(--white); stroke-width: 1; fill: none; }
+
+/* Default state path (cursor + transition). */
+.psypact-map__state {
+  cursor: pointer;
+  transition: fill 0.18s ease, stroke 0.18s ease;
+  stroke: var(--white);
+  stroke-width: 0.6;
+}
+/* PSYPACT-effective states: teal-pale fill, deeper teal on hover/focus. */
+.psypact-map__state--effective { fill: var(--teal-pale); }
+.psypact-map__state--effective:hover,
+.psypact-map__state--effective:focus { fill: var(--teal-button); outline: none; }
+
+/* Non-PSYPACT states: light gray, slightly darker on hover. */
+.psypact-map__state--not { fill: #ECEEF1; }
+.psypact-map__state--not:hover,
+.psypact-map__state--not:focus { fill: #d4d8df; outline: none; }
+
+/* DC circle uses the same state classes; ensure stroke visible. */
+.psypact-map__svg circle.psypact-map__state { stroke: var(--white); stroke-width: 1; }
+
+/* Tooltip floats above the map; positioned by JS via inline style top/left.
+   Hidden by default with [aria-hidden=true]; shown when JS toggles it. */
+.psypact-map__tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--navy);
+  color: var(--white);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.35;
+  box-shadow: 0 8px 24px rgba(27, 42, 74, 0.22);
+  opacity: 0;
+  transform: translate(-50%, calc(-100% - 12px));
+  transition: opacity 0.15s ease;
+  z-index: 10;
+  white-space: nowrap;
+  min-width: 200px;
+  text-align: center;
+}
+.psypact-map__tooltip[aria-hidden="false"] { opacity: 1; }
+.psypact-map__tooltip-name {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.psypact-map__tooltip-status { display: block; font-size: 12px; color: var(--teal); }
+.psypact-map__tooltip-status--not { color: rgba(255, 255, 255, 0.7); }
+
+.psypact-map__footnote {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-light);
+  margin: 20px auto 0;
+  font-style: italic;
+}
+
+/* Mobile: shrink legend gap, smaller tooltip, full-width svg already. */
+@media (max-width: 600px) {
+  .psypact-map__legend { font-size: 12px; gap: 10px 18px; }
+  .psypact-map__viewport { padding: 8px; }
+  .psypact-map__tooltip { min-width: 160px; font-size: 12px; padding: 8px 12px; }
+}
 
 /* ============================================
    SPECIALISTS PAGE
