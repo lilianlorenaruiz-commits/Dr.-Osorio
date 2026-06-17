@@ -1095,6 +1095,14 @@ p { text-wrap: pretty; }
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   padding: 36px;
+  /* Same hover-lift as .process__step for consistent affordance across
+     informational cards. */
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+  will-change: transform;
+}
+.who-for__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(27, 42, 74, 0.10);
 }
 .who-for__card--individuals { border-top: 4px solid var(--teal); }
 .who-for__card--attorneys   { border-top: 4px solid var(--pink-accent); }
@@ -1363,7 +1371,9 @@ p { text-wrap: pretty; }
   border: 1px solid var(--border);
   flex-shrink: 0;
 }
-.psypact-map__swatch--effective { background: var(--psypact-blue-pale); border-color: var(--psypact-blue); }
+/* Swatch is the solid PSYPACT blue (the hover/active color of map states),
+   so the legend mirrors what the visitor sees on touch, not the resting fill. */
+.psypact-map__swatch--effective { background: var(--psypact-blue); border-color: var(--psypact-blue); }
 .psypact-map__swatch--not { background: #ECEEF1; border-color: #d0d4db; }
 
 /* Viewport relative for tooltip positioning. */
@@ -1442,6 +1452,22 @@ p { text-wrap: pretty; }
   color: var(--text-light);
   margin: 20px auto 0;
   font-style: italic;
+}
+
+/* Bottom-right caption inside the map viewport. Names what the map is so
+   a visitor scanning the page understands the context without reading
+   the section header. */
+.psypact-map__attribution {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin: 0;
+  pointer-events: none;
 }
 
 /* Alphabetical list of the 43 PSYPACT-Effective jurisdictions, shown
