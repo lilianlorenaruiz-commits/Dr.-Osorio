@@ -24,6 +24,11 @@
   --pink-light:  #F5ECF5;
   --pink-pale:   #F5F0F5;  /* path-card gradient stop, lighter than --pink-light */
   --pink-accent: #9b589b;
+  /* PSYPACT brand blue, sampled from the official logo (R=79 G=118 B=195).
+     Used only to mark PSYPACT-Effective surfaces (map states, legend swatch)
+     so the visual cue ties back to the logo a visitor recognizes. */
+  --psypact-blue:      #4F76C3;
+  --psypact-blue-pale: #DCE4F3;
   --text-dark:   #1A1A2E;
   --text-mid:    #444B5A;
   --text-light:  #5B6472;  /* darkened from #6B7280 (4.64:1) to ~5.7:1 on bg-light for AA margin */
@@ -1355,7 +1360,7 @@ p { text-wrap: pretty; }
   border: 1px solid var(--border);
   flex-shrink: 0;
 }
-.psypact-map__swatch--effective { background: var(--teal-pale); border-color: #b8dde0; }
+.psypact-map__swatch--effective { background: var(--psypact-blue-pale); border-color: var(--psypact-blue); }
 .psypact-map__swatch--not { background: #ECEEF1; border-color: #d0d4db; }
 
 /* Viewport relative for tooltip positioning. */
@@ -1384,10 +1389,11 @@ p { text-wrap: pretty; }
   stroke: var(--white);
   stroke-width: 0.6;
 }
-/* PSYPACT-effective states: teal-pale fill, deeper teal on hover/focus. */
-.psypact-map__state--effective { fill: var(--teal-pale); }
+/* PSYPACT-effective states use the PSYPACT brand blue so the map ties
+   back to the logo above. Pale fill at rest, full brand blue on hover/focus. */
+.psypact-map__state--effective { fill: var(--psypact-blue-pale); }
 .psypact-map__state--effective:hover,
-.psypact-map__state--effective:focus { fill: var(--teal-button); outline: none; }
+.psypact-map__state--effective:focus { fill: var(--psypact-blue); outline: none; }
 
 /* Non-PSYPACT states: light gray, slightly darker on hover. */
 .psypact-map__state--not { fill: #ECEEF1; }
@@ -1424,7 +1430,7 @@ p { text-wrap: pretty; }
   font-size: 14px;
   margin-bottom: 2px;
 }
-.psypact-map__tooltip-status { display: block; font-size: 12px; color: var(--teal); }
+.psypact-map__tooltip-status { display: block; font-size: 12px; color: var(--psypact-blue-pale); }
 .psypact-map__tooltip-status--not { color: rgba(255, 255, 255, 0.7); }
 
 .psypact-map__footnote {
@@ -1433,6 +1439,52 @@ p { text-wrap: pretty; }
   color: var(--text-light);
   margin: 20px auto 0;
   font-style: italic;
+}
+
+/* Alphabetical list of the 43 PSYPACT-Effective jurisdictions, shown
+   below the map as a textual companion. Grid auto-fit handles responsive
+   columns without media queries; long names like "Northern Mariana
+   Islands" stay on one line via the minmax 200px floor. */
+.psypact-states-list-wrap {
+  max-width: 1000px;
+  margin: 32px auto 0;
+  padding: 24px;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.psypact-states-list-title {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin: 0 0 16px;
+}
+.psypact-states-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 4px 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.psypact-states-list li {
+  font-size: 14px;
+  color: var(--text-mid);
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.psypact-states-list li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--psypact-blue);
+  flex-shrink: 0;
 }
 
 /* Mobile: shrink legend gap, smaller tooltip, full-width svg already. */
