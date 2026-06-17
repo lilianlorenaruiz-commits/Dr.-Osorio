@@ -11,6 +11,7 @@
   --teal:        #03bcc7;
   --teal-dark:   #029aa4;
   --teal-light:  #e6f9fa;
+  --teal-pale:   #F0FAFB;  /* path-card gradient stop, lighter than --teal-light */
   /* Accessible variants for CTAs that carry white text.
      #03bcc7 with white text = 2.4:1 (fails WCAG AA).
      #017a82 with white text = 4.6:1 (passes AA), darker hover #015e64 = 7.5:1. */
@@ -21,6 +22,7 @@
   --gold:        #C9944A;
   --gold-dark:   #b8833e;
   --pink-light:  #F5ECF5;
+  --pink-pale:   #F5F0F5;  /* path-card gradient stop, lighter than --pink-light */
   --pink-accent: #9b589b;
   --text-dark:   #1A1A2E;
   --text-mid:    #444B5A;
@@ -80,6 +82,14 @@ ul { list-style: none; }
   transition: top 0.15s ease-out;
 }
 .skip-link:focus { top: 0; outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* --- Typography base ---
+   text-wrap: balance evens out line lengths on short headings (h1-h3) so
+   the last line isn't an awkward single word. text-wrap: pretty reduces
+   widows/orphans in body prose. Both are progressive enhancement; older
+   browsers ignore them safely. */
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
 
 /* --- Container --- */
 .container {
@@ -467,11 +477,11 @@ ul { list-style: none; }
   margin-top: auto;
 }
 .path-card--individuals {
-  background: linear-gradient(180deg, #F0FAFB 0%, #FFFFFF 55%);
+  background: linear-gradient(180deg, var(--teal-pale) 0%, var(--white) 55%);
 }
 .path-card--individuals::before { background: var(--teal); }
 .path-card--attorneys {
-  background: linear-gradient(180deg, #F5F0F5 0%, #FFFFFF 55%);
+  background: linear-gradient(180deg, var(--pink-pale) 0%, var(--white) 55%);
 }
 .path-card--attorneys::before { background: var(--pink-accent); }
 
