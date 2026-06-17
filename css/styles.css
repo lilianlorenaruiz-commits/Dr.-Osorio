@@ -1271,13 +1271,16 @@ p { text-wrap: pretty; }
 /* PSYPACT badge: bordered chip with shield icon + provider label.
    Placeholder until the official PSYPACT logo image is integrated. */
 .psypact-badge {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 16px;
   padding: 14px 22px;
   background: var(--white);
   border: 2px solid var(--teal-button);
   border-radius: 14px;
+  /* max-width fit-content lets margin: auto center a flex container
+     that otherwise stretches to the parent's full width. */
+  max-width: max-content;
   margin: 8px auto 28px;
   box-shadow: 0 2px 12px rgba(27, 42, 74, 0.06);
 }
