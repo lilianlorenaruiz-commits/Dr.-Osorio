@@ -1153,7 +1153,7 @@ p { text-wrap: pretty; }
 }
 .eval-includes__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   max-width: var(--max-width);
   margin: 0 auto 48px;
@@ -1198,8 +1198,11 @@ p { text-wrap: pretty; }
 }
 .deliverables__list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 .deliverables__list li {
   display: flex;
@@ -1226,25 +1229,81 @@ p { text-wrap: pretty; }
   border-top: 1px solid var(--border);
 }
 .psypact-section__inner {
-  max-width: var(--max-width);
+  max-width: 1000px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 48px;
+}
+
+/* Who-for variants for label paragraph and trailing note inside cards. */
+.who-for__body--label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.who-for__note {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-light);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* PSYPACT badge: bordered chip with shield icon + provider label.
+   Placeholder until the official PSYPACT logo image is integrated. */
+.psypact-badge {
+  display: inline-flex;
   align-items: center;
-}
-.psypact-section__body { font-size: 15px; color: var(--text-mid); line-height: 1.7; margin-bottom: 24px; }
-.psypact-section__map {
+  gap: 14px;
+  padding: 14px 22px;
   background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  text-align: center;
-  min-width: 220px;
+  border: 2px solid var(--teal-button);
+  border-radius: 14px;
+  margin: 8px auto 28px;
+  box-shadow: 0 2px 12px rgba(27, 42, 74, 0.06);
 }
-.psypact-section__map-icon { color: var(--teal); margin: 0 auto 12px; }
-.psypact-section__map-label { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
-.psypact-section__map-sub { font-size: 12px; color: var(--text-light); margin-bottom: 16px; }
+.psypact-badge svg { color: var(--teal-button); flex-shrink: 0; }
+.psypact-badge__text { display: flex; flex-direction: column; text-align: left; gap: 2px; }
+.psypact-badge__title { font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.25; }
+.psypact-badge__sub { font-size: 12px; color: var(--text-light); }
+
+/* PSYPACT states: flex-wrap grid of 43 chips.
+   teal-pale background with subtle border, navy text. */
+.psypact-states-label {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 32px 0 16px;
+}
+.psypact-states {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 28px;
+  max-width: 900px;
+}
+.psypact-state {
+  font-size: 13px;
+  color: var(--navy);
+  background: var(--teal-pale);
+  border: 1px solid #d8edee;
+  border-radius: 999px;
+  padding: 6px 14px;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* PSYPACT external CTA: centered outline button row.
+   Wraps a btn--outline teal-button styled CTA pointing to psypact.gov. */
+.psypact-cta { text-align: center; margin-top: 8px; }
+.psypact-cta .btn { display: inline-flex; }
 
 /* ============================================
    SPECIALISTS PAGE
