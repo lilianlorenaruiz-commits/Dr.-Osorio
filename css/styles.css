@@ -1531,11 +1531,13 @@ p { text-wrap: pretty; }
 .psypact-map__state--effective { fill: var(--psypact-blue-pale); }
 .psypact-map__state--effective:hover,
 .psypact-map__state--effective:focus { fill: var(--psypact-blue); outline: none; }
+.psypact-map__state--effective:focus-visible { outline: 2px solid var(--navy); outline-offset: 1px; }
 
 /* Non-PSYPACT states: light gray, slightly darker on hover. */
 .psypact-map__state--not { fill: #ECEEF1; }
 .psypact-map__state--not:hover,
 .psypact-map__state--not:focus { fill: #d4d8df; outline: none; }
+.psypact-map__state--not:focus-visible { outline: 2px solid var(--navy); outline-offset: 1px; }
 
 /* DC circle uses the same state classes; ensure stroke visible. */
 .psypact-map__svg circle.psypact-map__state { stroke: var(--white); stroke-width: 1; }
