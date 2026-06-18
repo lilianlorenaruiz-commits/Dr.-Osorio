@@ -36,7 +36,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="images/optimized/dr-osorio-hero-c.jpg" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=29" />
+  <link rel="stylesheet" href="css/styles.css?v=30" />
+  <noscript><style>.fade-in{opacity:1!important;transform:none!important}</style></noscript>
 
   <!-- Structured Data: LocalBusiness + Person + WebSite + FAQPage -->
   <script type="application/ld+json">
@@ -58,9 +59,9 @@
         "email": "admin@drosoriopsych.com",
         "description": "Licensed psychologist providing immigration psychological evaluations, forensic psychological evaluations, and mental health evaluations in Massachusetts, Connecticut, and Florida, and via PSYPACT telehealth across 44 participating states.",
         "medicalSpecialty": [
-          "https://schema.org/MentalHealth",
-          "Forensic Psychology",
-          "Immigration Psychological Evaluation"
+          { "@type": "MedicalSpecialty", "name": "Mental Health" },
+          { "@type": "MedicalSpecialty", "name": "Forensic Psychology" },
+          { "@type": "MedicalSpecialty", "name": "Immigration Psychological Evaluation" }
         ],
         "availableLanguage": [
           { "@type": "Language", "name": "English" },
@@ -566,7 +567,7 @@
       </div>
       <div>
         <div class="trust-item__title">PSYPACT Telehealth</div>
-        <div class="trust-item__body">Telepsychology services authorized across <a href="https://psypact.org" rel="noopener" class="trust-item__link">44 PSYPACT participating states</a>.</div>
+        <div class="trust-item__body">Telepsychology services authorized across <a href="https://psypact.org" rel="noopener noreferrer" class="trust-item__link">44 PSYPACT participating states</a>.</div>
       </div>
     </div>
 

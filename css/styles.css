@@ -478,9 +478,6 @@ p { text-wrap: pretty; }
   bottom: 0;
   width: 5px;
 }
-.path-card__cta {
-  margin-top: auto;
-}
 .path-card--individuals {
   background: linear-gradient(180deg, var(--teal-pale) 0%, var(--white) 55%);
 }
@@ -543,6 +540,7 @@ p { text-wrap: pretty; }
 }
 
 .path-card__cta {
+  margin-top: auto;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -675,7 +673,6 @@ p { text-wrap: pretty; }
   font-weight: 700;
   color: var(--navy);
   margin-bottom: 12px;
-  min-height: 100px;
 }
 .service-card__body {
   font-size: 14px;
@@ -832,6 +829,12 @@ p { text-wrap: pretty; }
   color: var(--text-light);
   line-height: 1.5;
 }
+.trust-item__link {
+  color: var(--teal-button);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.trust-item__link:hover { color: var(--teal-button-hover); }
 
 /* ============================================
    CTA BANNER
@@ -923,7 +926,7 @@ p { text-wrap: pretty; }
 }
 .footer__psypact {
   font-size: 12px;
-  color: var(--teal);
+  color: var(--teal-pale);
   font-weight: 600;
 }
 .footer__col-title {
@@ -937,7 +940,7 @@ p { text-wrap: pretty; }
 .footer__links { display: flex; flex-direction: column; gap: 10px; }
 .footer__link {
   font-size: 13px;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.70);
   transition: color 0.2s;
 }
 .footer__link:hover { color: var(--teal); }
@@ -2050,6 +2053,7 @@ p { text-wrap: pretty; }
   .hero__actions .btn {
     justify-content: center;
   }
+  .service-card__title { min-height: 100px; }
 }
 
 @media (max-width: 480px) {
