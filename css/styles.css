@@ -3,8 +3,16 @@
    Main Stylesheet
    ============================================ */
 
-/* Fonts loaded via <link rel="preconnect"> + <link rel="stylesheet"> in each
-   page's <head> for a shorter critical path. CSS @import was render-blocking. */
+/* Self-hosted fonts — eliminates Google Fonts CDN dependency for privacy + SRI. */
+@font-face { font-family: 'Raleway'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/raleway-400.woff2') format('woff2'); }
+@font-face { font-family: 'Raleway'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/raleway-500.woff2') format('woff2'); }
+@font-face { font-family: 'Raleway'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/raleway-600.woff2') format('woff2'); }
+@font-face { font-family: 'Raleway'; font-style: normal; font-weight: 700; font-display: swap; src: url('../fonts/raleway-700.woff2') format('woff2'); }
+@font-face { font-family: 'Raleway'; font-style: normal; font-weight: 800; font-display: swap; src: url('../fonts/raleway-800.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/inter-400.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/inter-500.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/inter-600.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('../fonts/inter-700.woff2') format('woff2'); }
 
 /* --- Variables --- */
 :root {
