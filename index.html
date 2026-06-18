@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="images/optimized/dr-osorio-hero-c.jpg" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=27" />
+  <link rel="stylesheet" href="css/styles.css?v=28" />
 
   <!-- Structured Data: LocalBusiness + Person + WebSite + FAQPage -->
   <script type="application/ld+json">
@@ -44,7 +44,7 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["MedicalBusiness", "PsychologicalTreatment"],
+        "@type": "MedicalBusiness",
         "@id": "https://psychevaluations.net/#organization",
         "name": "Dr. Claudia Osorio Psychological Services",
         "alternateName": "psychevaluations.net",
@@ -57,6 +57,11 @@
         "telephone": "+16177522526",
         "email": "admin@drosoriopsych.com",
         "description": "Licensed psychologist providing immigration psychological evaluations, forensic psychological evaluations, and mental health evaluations in Massachusetts, Connecticut, and Florida, and via PSYPACT telehealth across 43 participating states.",
+        "medicalSpecialty": [
+          "https://schema.org/MentalHealth",
+          "Forensic Psychology",
+          "Immigration Psychological Evaluation"
+        ],
         "availableLanguage": [
           { "@type": "Language", "name": "English" },
           { "@type": "Language", "name": "Spanish" }
@@ -66,6 +71,7 @@
           "credentialCategory": "PSYPACT Authorized Provider",
           "recognizedBy": {
             "@type": "Organization",
+            "@id": "https://psypact.org",
             "name": "Psychology Interjurisdictional Compact (PSYPACT)",
             "url": "https://psypact.org"
           }
@@ -88,12 +94,6 @@
           { "@id": "https://psychevaluations.net/#location-worcester" },
           { "@id": "https://psychevaluations.net/#location-east-hartford" },
           { "@id": "https://psychevaluations.net/#location-palm-bay" }
-        ],
-        "sameAs": [
-          "TODO: Psychology Today profile URL",
-          "TODO: LinkedIn URL",
-          "TODO: PSYPACT directory listing URL",
-          "TODO: NPI Registry URL"
         ]
       },
       {
@@ -112,14 +112,14 @@
           "postalCode": "01605",
           "addressCountry": "US"
         },
-        "geo": { "@type": "GeoCoordinates", "latitude": "TODO", "longitude": "TODO" },
+        "geo": { "@type": "GeoCoordinates", "latitude": 42.2771183, "longitude": -71.7946936 },
         "openingHoursSpecification": [{
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
           "opens": "08:00",
           "closes": "18:00"
         }],
-        "hasMap": "TODO: Google Maps URL Worcester"
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=42.2771183,-71.7946936"
       },
       {
         "@type": "LocalBusiness",
@@ -137,14 +137,14 @@
           "postalCode": "06108",
           "addressCountry": "US"
         },
-        "geo": { "@type": "GeoCoordinates", "latitude": "TODO", "longitude": "TODO" },
+        "geo": { "@type": "GeoCoordinates", "latitude": 41.7822451, "longitude": -72.6125769 },
         "openingHoursSpecification": [{
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
           "opens": "08:00",
           "closes": "18:00"
         }],
-        "hasMap": "TODO: Google Maps URL East Hartford"
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=41.7822451,-72.6125769"
       },
       {
         "@type": "LocalBusiness",
@@ -162,14 +162,14 @@
           "postalCode": "32905",
           "addressCountry": "US"
         },
-        "geo": { "@type": "GeoCoordinates", "latitude": "TODO", "longitude": "TODO" },
+        "geo": { "@type": "GeoCoordinates", "latitude": 28.0348370, "longitude": -80.6031460 },
         "openingHoursSpecification": [{
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
           "opens": "08:00",
           "closes": "18:00"
         }],
-        "hasMap": "TODO: Google Maps URL Palm Bay"
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=28.0348370,-80.6031460"
       },
       {
         "@type": "WebSite",
@@ -178,8 +178,9 @@
         "name": "Dr. Claudia Osorio Psychological Services",
         "description": "Immigration, forensic, and mental health psychological evaluations. PSYPACT authorized for telehealth across 43 states.",
         "publisher": { "@id": "https://psychevaluations.net/#organization" },
-        "inLanguage": ["en", "es"],
-        "dateModified": "2026-06-07"
+        "inLanguage": "en",
+        "datePublished": "2026-06-07",
+        "dateModified": "2026-06-17"
       },
       {
         "@type": "Person",
@@ -196,36 +197,37 @@
           { "@type": "Language", "name": "English" },
           { "@type": "Language", "name": "Spanish" }
         ],
+        "knowsAbout": [
+          { "@type": "MedicalSpecialty", "name": "Immigration Psychological Evaluation" },
+          { "@type": "MedicalSpecialty", "name": "Forensic Psychology" },
+          { "@type": "MedicalSpecialty", "name": "PSYPACT Telehealth" }
+        ],
         "hasCredential": [
           {
             "@type": "EducationalOccupationalCredential",
             "credentialCategory": "PSYPACT Authorized Provider",
-            "recognizedBy": { "@type": "Organization", "name": "PSYPACT", "url": "https://psypact.org" }
+            "recognizedBy": {
+              "@type": "Organization",
+              "@id": "https://psypact.org",
+              "name": "Psychology Interjurisdictional Compact (PSYPACT)",
+              "url": "https://psypact.org"
+            }
           },
           {
             "@type": "EducationalOccupationalCredential",
             "credentialCategory": "license",
-            "recognizedBy": { "@type": "Organization", "name": "Massachusetts Board of Registration of Psychologists" },
-            "identifier": "TODO: MA license number"
+            "recognizedBy": { "@type": "Organization", "name": "Massachusetts Board of Registration of Psychologists" }
           },
           {
             "@type": "EducationalOccupationalCredential",
             "credentialCategory": "license",
-            "recognizedBy": { "@type": "Organization", "name": "Connecticut Department of Public Health, Psychology" },
-            "identifier": "TODO: CT license number"
+            "recognizedBy": { "@type": "Organization", "name": "Connecticut Department of Public Health, Psychology" }
           },
           {
             "@type": "EducationalOccupationalCredential",
             "credentialCategory": "license",
-            "recognizedBy": { "@type": "Organization", "name": "Florida Department of Health, Psychology" },
-            "identifier": "TODO: FL license number"
+            "recognizedBy": { "@type": "Organization", "name": "Florida Department of Health, Psychology" }
           }
-        ],
-        "sameAs": [
-          "TODO: Psychology Today profile URL",
-          "TODO: LinkedIn profile URL",
-          "TODO: PSYPACT directory entry URL",
-          "TODO: NPI Registry URL"
         ]
       },
       {
@@ -696,8 +698,8 @@
   <div class="footer__bottom">
     <p class="footer__copy">&copy; 2026 Dr. Claudia Osorio Psychological Services. All rights reserved.</p>
     <nav class="footer__legal" aria-label="Legal links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
     </nav>
   </div>
 </footer>

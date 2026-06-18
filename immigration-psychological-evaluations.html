@@ -35,9 +35,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=27" />
+  <link rel="stylesheet" href="css/styles.css?v=28" />
 
-  <!-- Structured Data: BreadcrumbList + WebPage + Service -->
+  <!-- Structured Data: BreadcrumbList + WebPage + Service + 5 MedicalProcedure + FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,7 +46,7 @@
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://psychevaluations.net/" },
-          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://psychevaluations.net/#services" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://psychevaluations.net/#services-heading" },
           { "@type": "ListItem", "position": 3, "name": "Immigration Psychological Evaluations", "item": "https://psychevaluations.net/immigration-psychological-evaluations.html" }
         ]
       },
@@ -58,12 +58,15 @@
         "description": "Immigration psychological evaluations for asylum, VAWA, hardship waivers, U-Visa, T-Visa, and N-648 cases. Structured reports by licensed psychologists, telehealth across PSYPACT states.",
         "isPartOf": { "@id": "https://psychevaluations.net/#website" },
         "provider": { "@id": "https://psychevaluations.net/#organization" },
+        "author": { "@id": "https://psychevaluations.net/#dr-claudia-osorio" },
         "primaryImageOfPage": "https://psychevaluations.net/images/optimized/dr-osorio-hero-c.jpg",
-        "dateModified": "2026-06-16",
+        "dateModified": "2026-06-17",
+        "datePublished": "2026-06-16",
         "inLanguage": "en"
       },
       {
         "@type": "Service",
+        "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#service",
         "name": "Immigration Psychological Evaluations",
         "serviceType": "Psychological Evaluation",
         "provider": { "@id": "https://psychevaluations.net/#organization" },
@@ -72,6 +75,112 @@
         "audience": [
           { "@type": "Audience", "audienceType": "Individuals and Families" },
           { "@type": "Audience", "audienceType": "Immigration Attorneys" }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Immigration Evaluation Types",
+          "itemListElement": [
+            { "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#asylum-eval" },
+            { "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#vawa-eval" },
+            { "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#hardship-eval" },
+            { "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#uvisa-tvisa-eval" },
+            { "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#n648-eval" }
+          ]
+        }
+      },
+      {
+        "@type": "MedicalProcedure",
+        "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#asylum-eval",
+        "name": "Asylum and Convention Against Torture (CAT) Psychological Evaluation",
+        "procedureType": "Psychological Evaluation",
+        "description": "Clinical psychological assessment documenting trauma history, fear of persecution, and credibility-consistent psychological indicators in support of asylum claims under Form I-589 and Convention Against Torture petitions.",
+        "followup": "Written evaluation report typically delivered within 7 to 14 business days after the final session. Expedited timelines available for urgent court deadlines.",
+        "relevantSpecialty": "https://schema.org/MentalHealth",
+        "provider": { "@id": "https://psychevaluations.net/#organization" }
+      },
+      {
+        "@type": "MedicalProcedure",
+        "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#vawa-eval",
+        "name": "VAWA Psychological Evaluation",
+        "procedureType": "Psychological Evaluation",
+        "description": "Clinical psychological assessment documenting the psychological impact of domestic violence or abuse for self-petitioners under the Violence Against Women Act. Reports support Form I-360 and address battery, extreme cruelty, and resulting psychological injury.",
+        "followup": "Written evaluation report typically delivered within 7 to 14 business days after the final session.",
+        "relevantSpecialty": "https://schema.org/MentalHealth",
+        "provider": { "@id": "https://psychevaluations.net/#organization" }
+      },
+      {
+        "@type": "MedicalProcedure",
+        "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#hardship-eval",
+        "name": "Extreme Hardship Waiver Psychological Evaluation (I-601 and I-601A)",
+        "procedureType": "Psychological Evaluation",
+        "description": "Clinical assessment documenting the psychological, emotional, and familial hardship a qualifying U.S. citizen or lawful permanent resident relative would face if the applicant were barred. Reports address USCIS extreme hardship factors for Forms I-601 and I-601A.",
+        "followup": "Written evaluation report typically delivered within 7 to 14 business days after the final session.",
+        "relevantSpecialty": "https://schema.org/MentalHealth",
+        "provider": { "@id": "https://psychevaluations.net/#organization" }
+      },
+      {
+        "@type": "MedicalProcedure",
+        "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#uvisa-tvisa-eval",
+        "name": "U-Visa and T-Visa Psychological Evaluation",
+        "procedureType": "Psychological Evaluation",
+        "description": "Clinical psychological assessment documenting harm suffered by crime victims (U-Visa, Form I-918) and human trafficking victims (T-Visa, Form I-914), supporting qualifying condition and certification requirements.",
+        "followup": "Written evaluation report typically delivered within 7 to 14 business days after the final session.",
+        "relevantSpecialty": "https://schema.org/MentalHealth",
+        "provider": { "@id": "https://psychevaluations.net/#organization" }
+      },
+      {
+        "@type": "MedicalProcedure",
+        "@id": "https://psychevaluations.net/immigration-psychological-evaluations.html#n648-eval",
+        "name": "N-648 Medical Certification Evaluation for Naturalization Disability Exemption",
+        "procedureType": "Psychological Evaluation",
+        "description": "Clinical evaluation by a licensed psychologist completing Form N-648 to certify a physical or developmental disability or mental impairment that prevents a naturalization applicant from meeting English language or civics requirements.",
+        "followup": "Completed Form N-648 with supporting documentation typically delivered within 7 to 14 business days after the final session.",
+        "relevantSpecialty": "https://schema.org/MentalHealth",
+        "provider": { "@id": "https://psychevaluations.net/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is an immigration psychological evaluation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An immigration psychological evaluation is a structured clinical assessment that documents the emotional and psychological impact of an individual's experience for use in immigration cases. The evaluation follows an evidence-based process and produces a written report that may support legal documentation for petitions such as asylum, VAWA, hardship waivers, U-Visa, T-Visa, and N-648."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What types of immigration cases require a psychological evaluation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Common case types include asylum and Convention Against Torture (CAT) claims, VAWA self-petitions for survivors of domestic violence, extreme hardship waivers (Forms I-601 and I-601A), U-Visa applications for crime victims, T-Visa applications for trafficking victims, and Form N-648 medical certifications for naturalization disability exemptions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does an immigration psychological evaluation take to complete?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The clinical portion typically involves one to two interview sessions. The completed written evaluation report is delivered within 7 to 14 business days after the final session. Expedited turnaround is available for urgent court or filing deadlines."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the immigration psychological evaluation available via telehealth?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Dr. Claudia Osorio is PSYPACT Authorized and may conduct evaluations via telehealth across 43 participating PSYPACT jurisdictions, depending on case requirements and provider licensure. The complete list of participating states is available on this page."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can attorneys request expedited turnaround for urgent immigration cases?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Expedited evaluation timelines are available for urgent court or USCIS filing deadlines. Attorneys should specify the deadline when scheduling the initial call so the practice can confirm capacity and turnaround commitments."
+            }
+          }
         ]
       }
     ]
@@ -207,6 +316,52 @@
   </div>
 </section>
 
+<!-- ============ TYPES OF IMMIGRATION PSYCHOLOGICAL EVALUATIONS ============ -->
+<section class="eval-types" aria-labelledby="types-heading">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-header__label">Evaluation Types</p>
+      <h2 class="section-header__title" id="types-heading">Types of Immigration Psychological Evaluations</h2>
+      <div class="section-header__divider" aria-hidden="true"></div>
+      <p class="section-header__body">Each case type follows the same structured clinical process, with the report tailored to the specific legal context and the USCIS forms involved.</p>
+    </div>
+
+    <div class="eval-types__list">
+
+      <article class="eval-types__article" id="asylum-eval" aria-labelledby="asylum-eval-title">
+        <h3 class="eval-types__title" id="asylum-eval-title">Asylum and Convention Against Torture (CAT) Evaluations</h3>
+        <p class="eval-types__body">An asylum evaluation documents trauma history, fear of persecution, and credibility-consistent psychological indicators in support of asylum claims and Convention Against Torture (CAT) petitions. Dr. Osorio assesses trauma symptoms, post-traumatic stress, depression, and other psychological conditions relevant to the asylum standard.</p>
+        <p class="eval-types__forms"><span class="eval-types__form-tag">Form I-589</span> <span class="eval-types__form-tag">CAT Petition</span></p>
+      </article>
+
+      <article class="eval-types__article" id="vawa-eval" aria-labelledby="vawa-eval-title">
+        <h3 class="eval-types__title" id="vawa-eval-title">VAWA Psychological Evaluations</h3>
+        <p class="eval-types__body">A VAWA evaluation documents the psychological impact of domestic violence or abuse for self-petitioners under the Violence Against Women Act. The report addresses battery, extreme cruelty, and the resulting psychological injury, supporting Form I-360 self-petitions and related immigration relief.</p>
+        <p class="eval-types__forms"><span class="eval-types__form-tag">Form I-360</span></p>
+      </article>
+
+      <article class="eval-types__article" id="hardship-eval" aria-labelledby="hardship-eval-title">
+        <h3 class="eval-types__title" id="hardship-eval-title">Extreme Hardship Waiver Evaluations</h3>
+        <p class="eval-types__body">A hardship waiver evaluation documents the psychological, emotional, and familial hardship a qualifying U.S. citizen or lawful permanent resident relative would face if the applicant were barred. Reports address USCIS extreme hardship factors for Forms I-601 and I-601A.</p>
+        <p class="eval-types__forms"><span class="eval-types__form-tag">Form I-601</span> <span class="eval-types__form-tag">Form I-601A</span></p>
+      </article>
+
+      <article class="eval-types__article" id="uvisa-tvisa-eval" aria-labelledby="uvisa-tvisa-eval-title">
+        <h3 class="eval-types__title" id="uvisa-tvisa-eval-title">U-Visa and T-Visa Psychological Evaluations</h3>
+        <p class="eval-types__body">These evaluations document the psychological harm suffered by crime victims (U-Visa) and human trafficking victims (T-Visa), supporting qualifying condition and certification requirements. Reports describe the impact of the underlying criminal acts or trafficking on the applicant's psychological functioning.</p>
+        <p class="eval-types__forms"><span class="eval-types__form-tag">Form I-918</span> <span class="eval-types__form-tag">Form I-914</span></p>
+      </article>
+
+      <article class="eval-types__article" id="n648-eval" aria-labelledby="n648-eval-title">
+        <h3 class="eval-types__title" id="n648-eval-title">N-648 Medical Certification for Naturalization</h3>
+        <p class="eval-types__body">An N-648 evaluation by a licensed psychologist completes the medical certification that exempts a naturalization applicant from English language or civics requirements due to a physical or developmental disability or mental impairment. Dr. Osorio conducts the clinical evaluation and completes Form N-648 with supporting documentation.</p>
+        <p class="eval-types__forms"><span class="eval-types__form-tag">Form N-648</span></p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 <!-- ============ WHAT THE EVALUATION INCLUDES ============ -->
 <section class="eval-includes" aria-labelledby="includes-heading">
   <div class="container">
@@ -310,7 +465,7 @@
         <div class="process__step-num" aria-label="Step 3">3</div>
         <svg class="process__step-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm5.707 5.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 12.414V15a1 1 0 102 0v-2.586l.293.293a1 1 0 001.414-1.414l-2-2z" clip-rule="evenodd"/></svg>
         <h3 class="process__step-title">Report Delivery</h3>
-        <p class="process__step-body">You receive a structured psychological evaluation report with documented findings that may support your immigration case.</p>
+        <p class="process__step-body">You receive a structured psychological evaluation report with documented findings that may support your immigration case. The completed report is typically delivered within 7 to 14 business days after the final session. Expedited turnaround is available for urgent court or USCIS filing deadlines.</p>
       </div>
 
     </div>
@@ -507,8 +662,8 @@
   <div class="footer__bottom">
     <p class="footer__copy">&copy; 2026 Dr. Claudia Osorio Psychological Services. All rights reserved.</p>
     <nav class="footer__legal" aria-label="Legal links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
     </nav>
   </div>
 </footer>
